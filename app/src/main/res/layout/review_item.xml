@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/review_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/user1"
+        app:civ_border_width="2dp"
+        app:civ_border_color="#ffcccccc"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/review_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="kym71**"
+            android:textSize="@dimen/review_size"
+            android:textStyle="bold"
+            android:textColor="#000000"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/review_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10분전"
+                android:textSize="@dimen/review_size"
+                android:textStyle="bold"
+                android:textColor="#888888"/>
+
+            <RatingBar
+                android:id="@+id/review_rating_bar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="5"
+                android:stepSize="0.1" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/review_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="재미있네요."
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="추천"
+                android:textColor="#000000"
+                android:textSize="@dimen/review_size"/>
+            <TextView
+                android:id="@+id/review_up"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#000000"
+                android:textSize="@dimen/review_size"
+                android:layout_marginLeft="8dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="|"
+                android:textColor="#000000"
+                android:textSize="@dimen/review_size"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+            <TextView
+                android:id="@+id/review_report_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="신고하기"
+                android:textColor="#888888"
+                android:textSize="@dimen/review_size"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
