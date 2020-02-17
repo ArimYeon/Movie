@@ -1,9 +1,9 @@
 package com.example.mymovie;
 
 public class ReviewitemData {
-    int resId;
-    float rating;
-    String id, time, review, up;
+    private int resId;
+    private float rating;
+    private String id, time, review, up;
 
     public ReviewitemData(int resId, float rating, String id, String time, String review, String up) {
         this.resId = resId;

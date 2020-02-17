@@ -16,61 +16,61 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView thumbUp, thumbDown, ratingText;
-    CheckBox thumbUpBtn, thumbDownBtn;
-    RatingBar ratingbar;
-    TextView writeBtn;
-    Button showAllBtn;
-    ReviewAdapter adapter;
-    ArrayList<ReviewitemData> items;
-    ListView reviewListView;
+    private TextView thumbUp, thumbDown, ratingText;
+    private CheckBox thumbUpBtn, thumbDownBtn;
+    private RatingBar ratingbar;
+    private TextView writeBtn;
+    private Button showAllBtn;
+    private ReviewAdapter adapter;
+    private ArrayList<ReviewitemData> items;
+    private ListView reviewListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        thumbUp = (TextView)findViewById(R.id.thumb_up_text);
-        thumbDown = (TextView)findViewById(R.id.thumb_down_text);
-        thumbUpBtn = (CheckBox)findViewById(R.id.thumb_up_btn);
-        thumbDownBtn = (CheckBox)findViewById(R.id.thumb_down_btn);
-        ratingbar = (RatingBar)findViewById(R.id.rating_bar);
-        ratingText = (TextView)findViewById(R.id.rating_text);
-        writeBtn = (TextView)findViewById(R.id.write_btn);
-        showAllBtn = (Button)findViewById(R.id.show_all_btn);
-        reviewListView = (ListView)findViewById(R.id.review_listview);
+        thumbUp = findViewById(R.id.thumb_up_text);
+        thumbDown = findViewById(R.id.thumb_down_text);
+        thumbUpBtn = findViewById(R.id.thumb_up_btn);
+        thumbDownBtn = findViewById(R.id.thumb_down_btn);
+        ratingbar = findViewById(R.id.rating_bar);
+        ratingText = findViewById(R.id.rating_text);
+        writeBtn = findViewById(R.id.write_btn);
+        showAllBtn = findViewById(R.id.show_all_btn);
+        reviewListView = findViewById(R.id.review_listview);
 
         //좋아요,싫어요
         thumbUpBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                int up = Integer.parseInt(thumbUp.getText().toString());
+                int upCount = Integer.parseInt(thumbUp.getText().toString());
                 if(b){
                     if(thumbDownBtn.isChecked()){
                         thumbDownBtn.setChecked(false);
                     }
-                    up++;
+                    upCount++;
                 }
                 else{
-                    up--;
+                    upCount--;
                 }
-                thumbUp.setText(""+up);
+                thumbUp.setText(String.valueOf(upCount));
             }
         });
         thumbDownBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                int down = Integer.parseInt(thumbDown.getText().toString());
+                int downCount = Integer.parseInt(thumbDown.getText().toString());
                 if(b){
                     if(thumbUpBtn.isChecked()){
                         thumbUpBtn.setChecked(false);
                     }
-                    down++;
+                    downCount++;
                 }
                 else{
-                    down--;
+                    downCount--;
                 }
-                thumbDown.setText(""+down);
+                thumbDown.setText(String.valueOf(downCount));
             }
         });
 
@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
         ratingbar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean b) {
-                ratingText.setText(""+rating);
+                ratingText.setText(String.valueOf(rating));
             }
         });
 
