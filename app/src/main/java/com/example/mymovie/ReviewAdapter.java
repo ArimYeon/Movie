@@ -17,6 +17,18 @@ public class ReviewAdapter extends BaseAdapter {
         this.items = items;
     }
 
+    public void addItem(ReviewitemData item){
+        items.add(item);
+    }
+
+    public ArrayList<ReviewitemData> getItems(){
+        return items;
+    }
+
+    public void setItems(ArrayList<ReviewitemData> items){
+        this.items = items;
+    }
+
     @Override
     public int getCount() {
         return items.size();

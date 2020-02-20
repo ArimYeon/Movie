@@ -1,16 +1,19 @@
 package com.example.mymovie;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ReviewAdapter adapter;
     private ArrayList<ReviewitemData> items;
     private ListView reviewListView;
+    private ScrollView scrollview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity {
         writeBtn = findViewById(R.id.write_btn);
         showAllBtn = findViewById(R.id.show_all_btn);
         reviewListView = findViewById(R.id.review_listview);
+        scrollview = findViewById(R.id.scrollview);
+
+        items = new ArrayList<ReviewitemData>();
 
         //좋아요,싫어요
         thumbUpBtn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -83,29 +90,73 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //한줄평
-        setReviewData();
         adapter = new ReviewAdapter(this, items);
         reviewListView.setAdapter(adapter);
+        setReviewData();
 
         writeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "작성하기 눌렸습니다", Toast.LENGTH_LONG).show();
+                showCommendWriteActivity();
             }
         });
         showAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "모두보기 눌렸습니다", Toast.LENGTH_LONG).show();
+                showCommendShowActivity();
+            }
+        });
+
+        //리스트뷰 스크롤 가능하게
+        reviewListView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                scrollview.requestDisallowInterceptTouchEvent(true);
+                return false;
             }
         });
     }
 
+    //리뷰초기화
     public void setReviewData(){
-        items = new ArrayList<ReviewitemData>();
-        items.add(new ReviewitemData(R.drawable.user1, 3.5f, "yeon**", "5분전", "적당히 재밌다. 오랜만에 잠 안오는 영화 봤네요.", "3"));
-        items.add(new ReviewitemData(R.drawable.user1, 4.7f, "kim**", "5분전", "적당히 재밌다.", "5"));
-        items.add(new ReviewitemData(R.drawable.user1, 2.3f, "cho**", "5분전", "오랜만에 잠 안오는 영화 봤네요.", "8"));
+        adapter.addItem(new ReviewitemData(R.drawable.user1, 3.5f, "yeon**", "5분전", "적당히 재밌다. 오랜만에 잠 안오는 영화 봤네요.", "3"));
+        adapter.addItem(new ReviewitemData(R.drawable.user1, 4.7f, "kim**", "5분전", "적당히 재밌다.", "5"));
+        adapter.addItem(new ReviewitemData(R.drawable.user1, 4.7f, "cho**", "5분전", "적당히 재밌다.", "5"));
+        adapter.notifyDataSetChanged();
+    }
+    //작성하기로 넘어가기
+    private void showCommendWriteActivity(){
+        Intent intent = new Intent(getApplicationContext(), CommendWriteActivity.class);
+        intent.putExtra("code", 101);
+        startActivityForResult(intent, 101);
+    }
+    //모두보기로 넘어가기
+    private void showCommendShowActivity(){
+        items = adapter.getItems();
+        Intent intent = new Intent(getApplicationContext(), CommendShowActivity.class);
+        intent.putParcelableArrayListExtra("items", items);
+        startActivityForResult(intent,201);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        //작성하기에서 돌아왔을 때
+        if(requestCode==101){
+            if(intent != null){
+                String commendText = intent.getStringExtra("commend");
+                float commendRate = intent.getFloatExtra("rate", 0.0f);
+                adapter.addItem(new ReviewitemData(R.drawable.user1, commendRate, "hi**", "10분전",commendText, "1"));
+                adapter.notifyDataSetChanged();
+            }
+        }
+        //모두보기에서 돌아왔을 때
+        else if(requestCode==201){
+            items = intent.getParcelableArrayListExtra("items");
+            adapter.setItems(items);
+            adapter.notifyDataSetChanged();
+        }
     }
 
 }

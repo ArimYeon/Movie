@@ -9,6 +9,13 @@
         android:roundIcon="@drawable/ic_app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CommendShowActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="한줄평 목록">
+        </activity>
+        <activity android:name=".CommendWriteActivity"
+            android:label="한줄평 작성">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
