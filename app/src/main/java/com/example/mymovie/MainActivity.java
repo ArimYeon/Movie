@@ -3,6 +3,7 @@ package com.example.mymovie;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -17,6 +18,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.mymovie.CommendWriteActivity.COMMEND;
+import static com.example.mymovie.CommendWriteActivity.RATE;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView thumbUp, thumbDown, ratingText;
@@ -28,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<ReviewitemData> items;
     private ListView reviewListView;
     private ScrollView scrollview;
+
+    public final static String ITEMS  = "items";
+    private final static int WRITE_REQ_CODE = 101;
+    private final static int SHOW_REQ_CODE = 201;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,15 +135,14 @@ public class MainActivity extends AppCompatActivity {
     //작성하기로 넘어가기
     private void showCommendWriteActivity(){
         Intent intent = new Intent(getApplicationContext(), CommendWriteActivity.class);
-        intent.putExtra("code", 101);
-        startActivityForResult(intent, 101);
+        startActivityForResult(intent, WRITE_REQ_CODE);
     }
     //모두보기로 넘어가기
     private void showCommendShowActivity(){
         items = adapter.getItems();
         Intent intent = new Intent(getApplicationContext(), CommendShowActivity.class);
-        intent.putParcelableArrayListExtra("items", items);
-        startActivityForResult(intent,201);
+        intent.putParcelableArrayListExtra(ITEMS, items);
+        startActivityForResult(intent,SHOW_REQ_CODE);
     }
 
     @Override
@@ -143,17 +150,17 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
 
         //작성하기에서 돌아왔을 때
-        if(requestCode==101){
-            if(intent != null){
-                String commendText = intent.getStringExtra("commend");
-                float commendRate = intent.getFloatExtra("rate", 0.0f);
+        if(requestCode==WRITE_REQ_CODE){
+            if(resultCode == Activity.RESULT_OK){
+                String commendText = intent.getStringExtra(COMMEND);
+                float commendRate = intent.getFloatExtra(RATE, 0.0f);
                 adapter.addItem(new ReviewitemData(R.drawable.user1, commendRate, "hi**", "10분전",commendText, "1"));
                 adapter.notifyDataSetChanged();
             }
         }
         //모두보기에서 돌아왔을 때
-        else if(requestCode==201){
-            items = intent.getParcelableArrayListExtra("items");
+        else if(requestCode==SHOW_REQ_CODE){
+            items = intent.getParcelableArrayListExtra(ITEMS);
             adapter.setItems(items);
             adapter.notifyDataSetChanged();
         }

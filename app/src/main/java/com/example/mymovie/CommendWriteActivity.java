@@ -13,7 +13,9 @@ public class CommendWriteActivity extends AppCompatActivity {
 
     private EditText commend;
     private RatingBar ratingbar;
-    private int code;
+
+    public final static String COMMEND = "commend";
+    public final static String RATE = "rate";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +24,6 @@ public class CommendWriteActivity extends AppCompatActivity {
 
         commend = (EditText)findViewById(R.id.commendText);
         ratingbar = findViewById(R.id.commendRatingbar);
-
-        Intent intent = getIntent();
-        code = intent.getIntExtra("code", 0);
 
         //취소
         Button cancel = findViewById(R.id.cancel_btn);
@@ -49,17 +48,9 @@ public class CommendWriteActivity extends AppCompatActivity {
         String text = commend.getText().toString();
         float rate = ratingbar.getRating();
 
-        Intent intent = null;
-        switch (code){
-            case 101:
-                intent = new Intent(getApplicationContext(), MainActivity.class);
-                break;
-            case 102:
-                intent = new Intent(getApplicationContext(), CommendShowActivity.class);
-                break;
-        }
-        intent.putExtra("commend", text);
-        intent.putExtra("rate", rate);
+        Intent intent = new Intent();
+        intent.putExtra(COMMEND, text);
+        intent.putExtra(RATE, rate);
         setResult(RESULT_OK, intent);
     }
 }

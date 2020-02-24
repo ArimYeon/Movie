@@ -3,6 +3,7 @@ package com.example.mymovie;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,12 +13,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.mymovie.CommendWriteActivity.COMMEND;
+import static com.example.mymovie.CommendWriteActivity.RATE;
+import static com.example.mymovie.MainActivity.ITEMS;
+
 public class CommendShowActivity extends AppCompatActivity {
 
     private TextView writeBtn;
     private ArrayList<ReviewitemData> items;
     private ReviewAdapter adapter;
     private ListView listview;
+
+    private final static int WRITE_REQ_CODE = 102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +41,7 @@ public class CommendShowActivity extends AppCompatActivity {
         });
 
         Intent passedIntent = getIntent();
-        items = passedIntent.getParcelableArrayListExtra("items");
+        items = passedIntent.getParcelableArrayListExtra(ITEMS);
         adapter = new ReviewAdapter(this, items);
         listview.setAdapter(adapter);
 
@@ -43,8 +50,7 @@ public class CommendShowActivity extends AppCompatActivity {
     //작성하기로 넘어가기
     private void showCommendWriteActivity(){
         Intent intent = new Intent(getApplicationContext(), CommendWriteActivity.class);
-        intent.putExtra("code", 102);
-        startActivityForResult(intent, 102);
+        startActivityForResult(intent, WRITE_REQ_CODE);
     }
 
     @Override
@@ -52,14 +58,21 @@ public class CommendShowActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
 
         //작성하기에서 돌아왔을 때
-        if(requestCode==102){
-            if(intent != null){
-                String commendText = intent.getStringExtra("commend");
-                float commendRate = intent.getFloatExtra("rate", 0.0f);
+        if(requestCode==WRITE_REQ_CODE){
+            if(resultCode == Activity.RESULT_OK){
+                String commendText = intent.getStringExtra(COMMEND);
+                float commendRate = intent.getFloatExtra(RATE, 0.0f);
                 adapter.addItem(new ReviewitemData(R.drawable.user1, commendRate, "hello**", "1분전",commendText, "7"));
                 adapter.notifyDataSetChanged();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        returnToMain();
+        finish();
+        super.onBackPressed();
     }
 
     @Override
@@ -78,7 +91,7 @@ public class CommendShowActivity extends AppCompatActivity {
     private void returnToMain(){
         items = adapter.getItems();
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.putParcelableArrayListExtra("items", items);
+        intent.putParcelableArrayListExtra(ITEMS, items);
         setResult(RESULT_OK, intent);
     }
 }
