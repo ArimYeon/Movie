@@ -102,8 +102,6 @@
                 android:textSize="@dimen/review_size"/>
         </LinearLayout>
 
-
-
     </LinearLayout>
 
 </LinearLayout>

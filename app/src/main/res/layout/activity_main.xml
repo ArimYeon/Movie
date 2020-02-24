@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,13 +34,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="50dp">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="군도"
-                        android:textSize="25sp"
+                        android:textSize="@dimen/movie_title_size"
                         android:textColor="@color/textColor"
                         android:textStyle="bold"/>
                     <ImageView
@@ -54,21 +55,21 @@
                     android:layout_height="wrap_content"
                     android:text="2014.07.23 개봉"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="20dp"/>
+                    android:textSize="@dimen/title_size"
+                    android:layout_marginStart="20dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="액션 / 137분"
                     android:textColor="@color/textColor"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="20dp"/>
+                    android:textSize="@dimen/title_size"
+                    android:layout_marginStart="20dp"/>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp">
 
                     <CheckBox
@@ -83,9 +84,9 @@
                         android:layout_height="wrap_content"
                         android:text="15"
                         android:textColor="@color/textColor"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/title_size"
                         android:textStyle="bold"
-                        android:layout_marginLeft="5dp"/>
+                        android:layout_marginStart="5dp"/>
 
                     <CheckBox
                         android:id="@+id/thumb_down_btn"
@@ -93,16 +94,16 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/thumb_down"
                         android:button="@null"
-                        android:layout_marginLeft="20dp" />
+                        android:layout_marginStart="20dp" />
                     <TextView
                         android:id="@+id/thumb_down_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
                         android:textColor="@color/textColor"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/title_size"
                         android:textStyle="bold"
-                        android:layout_marginLeft="5dp"/>
+                        android:layout_marginStart="5dp"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -127,7 +128,7 @@
                     android:gravity="center"
                     android:text="예매율"
                     android:textColor="@color/gray1"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/detail_title_size"
                     android:layout_marginBottom="5dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -145,15 +146,15 @@
                 android:layout_weight="1"
                 android:background="#ffffff"
                 android:gravity="center"
-                android:layout_marginRight="1dp"
-                android:layout_marginLeft="1dp">
+                android:layout_marginEnd="1dp"
+                android:layout_marginStart="1dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="평점"
                     android:textColor="@color/gray1"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/detail_title_size"
                     android:layout_marginBottom="5dp"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -177,7 +178,7 @@
                         android:textColor="@color/gray1"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        android:layout_marginLeft="5dp"/>
+                        android:layout_marginStart="5dp"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -194,7 +195,7 @@
                     android:gravity="center"
                     android:text="누적관객수"
                     android:textColor="@color/gray1"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/detail_title_size"
                     android:layout_marginBottom="5dp"/>
                 <TextView
                     android:layout_width="wrap_content"
@@ -224,7 +225,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="줄거리"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/detail_title_size"
                     android:textColor="#000000"
                     android:textStyle="bold"/>
                 <TextView
@@ -247,7 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="감독/출연"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/detail_title_size"
                     android:textColor="#000000"
                     android:textStyle="bold"/>
                 <LinearLayout
@@ -259,15 +260,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="감독"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/detail_title_size"
                         android:textColor="#000000"/>
                     <TextView
                         android:id="@+id/director_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="윤종빈"
-                        android:textSize="20sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="@dimen/detail_title_size"
+                        android:layout_marginStart="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -279,15 +280,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="출연"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/detail_title_size"
                         android:textColor="#000000"/>
                     <TextView
                         android:id="@+id/actor_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="하정우(도치), 강동원(조윤)"
-                        android:textSize="20sp"
-                        android:layout_marginLeft="10dp"/>
+                        android:textSize="@dimen/detail_title_size"
+                        android:layout_marginStart="10dp"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -309,7 +310,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="한줄평"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/detail_title_size"
                         android:textColor="#000000"
                         android:textStyle="bold" />
                     <TextView
@@ -317,10 +318,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="작성하기"
-                        android:textSize="20sp"
+                        android:textSize="@dimen/detail_title_size"
                         android:textColor="#ff561d"
                         android:textStyle="bold"
-                        android:layout_marginRight="10dp"
+                        android:layout_marginEnd="10dp"
                         android:layout_alignParentRight="true"
                         android:drawableLeft="@drawable/ic_review_selected"
                         android:drawablePadding="5dp" />
@@ -339,7 +340,7 @@
                     android:background="@drawable/all_button_back"
                     android:text="모두 보기"
                     android:textColor="#673AB7"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/detail_title_size"
                     android:layout_marginBottom="10dp"
                     android:layout_alignParentBottom="true"/>
             </RelativeLayout>
@@ -358,14 +359,15 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_facebook"
-                    android:layout_marginRight="15dp"/>
+                    android:layout_marginEnd="15dp"/>
+
                 <ImageView
                     android:id="@+id/kakao_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_kakao"
+                    android:layout_marginEnd="20dp"
                     android:layout_toRightOf="@id/facebook_btn"
-                    android:layout_marginRight="20dp" />
+                    android:src="@drawable/ic_kakao" />
                 <Button
                     android:id="@+id/ticket_btn"
                     android:layout_width="220dp"

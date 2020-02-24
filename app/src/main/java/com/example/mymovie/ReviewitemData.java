@@ -1,6 +1,9 @@
 package com.example.mymovie;
 
-public class ReviewitemData {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class ReviewitemData implements Parcelable {
     private int resId;
     private float rating;
     private String id, time, review, up;
@@ -12,6 +15,40 @@ public class ReviewitemData {
         this.time = time;
         this.review = review;
         this.up = up;
+    }
+
+    public ReviewitemData(Parcel src){
+        this.resId = src.readInt();
+        this.rating = src.readFloat();
+        this.id = src.readString();
+        this.time = src.readString();
+        this.review = src.readString();
+        this.up = src.readString();
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator(){
+        public ReviewitemData createFromParcel(Parcel src){
+            return new ReviewitemData(src);
+        }
+
+        public ReviewitemData[] newArray(int size){
+            return new ReviewitemData[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(resId);
+        parcel.writeFloat(rating);
+        parcel.writeString(id);
+        parcel.writeString(time);
+        parcel.writeString(review);
+        parcel.writeString(up);
     }
 
     public int getResId() {
