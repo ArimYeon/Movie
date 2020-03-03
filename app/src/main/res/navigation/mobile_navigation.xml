@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_movie_list">
+
+    <fragment
+        android:id="@+id/nav_movie_list"
+        android:name="com.example.mymovie.ListFragment"
+        android:label="@string/menu_movie_list"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_nav_movie_list_to_nav_movie_detail"
+            app:destination="@id/nav_movie_detail"
+            app:enterAnim="@anim/fragment_open_enter" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_movie_api"
+        android:name="com.example.mymovie.ui.gallery.GalleryFragment"
+        android:label="@string/menu_movie_api"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_book"
+        android:name="com.example.mymovie.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_book"
+        tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.example.mymovie.ui.share.ShareFragment"
+        android:label="@string/menu_setting"
+        tools:layout="@layout/fragment_share" />
+
+    <fragment
+        android:id="@+id/nav_movie_detail"
+        android:name="com.example.mymovie.ui.detail.DetailFragment"
+        android:label="영화 상세"
+        tools:layout="@layout/fragment_detail" />
+</navigation>

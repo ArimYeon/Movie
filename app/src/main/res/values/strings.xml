@@ -8,4 +8,18 @@
  죽어도 잊지 못할 끔찍한 일을 당한 뒤 군도에 합류. 지리산 추설의 신 거성(新 巨星) 도치로 거듭난다.\n\n뭉치면 백성, 흩어지면 도적!\n
  망할 세상을 뒤집기 위해, 백성이 주인인 새 세상을 향해 도치를 필두로 한 군도는 백성의 적,
  조윤과 한 판 승부를 시작하는데...</string>
+    <string name="detail">상세보기</string>
+
+    <string name="title_activity_movie_list">MovieListActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Mike</string>
+    <string name="nav_header_subtitle">mike.jung.global@gmail.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_movie_list">영화 목록</string>
+    <string name="menu_movie_api">영화 API</string>
+    <string name="menu_book">예매하기</string>
+    <string name="menu_setting">사용자 설정</string>
+
 </resources>

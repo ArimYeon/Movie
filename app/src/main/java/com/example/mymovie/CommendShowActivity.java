@@ -15,7 +15,8 @@ import java.util.ArrayList;
 
 import static com.example.mymovie.CommendWriteActivity.COMMEND;
 import static com.example.mymovie.CommendWriteActivity.RATE;
-import static com.example.mymovie.MainActivity.ITEMS;
+import static com.example.mymovie.ui.detail.DetailFragment.ITEMS;
+
 
 public class CommendShowActivity extends AppCompatActivity {
 
@@ -90,8 +91,9 @@ public class CommendShowActivity extends AppCompatActivity {
     //뒤로가기 눌렀을때 items main 으로 전달
     private void returnToMain(){
         items = adapter.getItems();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent();
         intent.putParcelableArrayListExtra(ITEMS, items);
         setResult(RESULT_OK, intent);
     }
 }
+
